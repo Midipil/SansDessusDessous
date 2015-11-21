@@ -273,66 +273,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 91be55714e71f824884c530b35ecabcf, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &443317784
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 443317785}
-  - 108: {fileID: 443317786}
-  m_Layer: 0
-  m_Name: Spotlight
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &443317785
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 443317784}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2125702663}
-  m_RootOrder: 4
---- !u!108 &443317786
-Light:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 443317784}
-  m_Enabled: 1
-  serializedVersion: 6
-  m_Type: 0
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 8
-  m_Range: 150
-  m_SpotAngle: 50
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 0
-    m_Resolution: -1
-    m_Strength: 1
-    m_Bias: .0500000007
-    m_NormalBias: .400000006
-  m_Cookie: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_Lightmapping: 4
-  m_BounceIntensity: 1
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
-  m_AreaSize: {x: 1, y: 1}
 --- !u!1001 &842754924
 Prefab:
   m_ObjectHideFlags: 0
@@ -2837,66 +2777,6 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 402028, guid: ee276a452b5d14b4f8ed1efd3a86f802, type: 2}
   m_PrefabInternal: {fileID: 21397235}
---- !u!1 &1785160151
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1785160152}
-  - 108: {fileID: 1785160153}
-  m_Layer: 0
-  m_Name: Spotlight_bis
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1785160152
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1785160151}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2125702663}
-  m_RootOrder: 5
---- !u!108 &1785160153
-Light:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1785160151}
-  m_Enabled: 1
-  serializedVersion: 6
-  m_Type: 0
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 8
-  m_Range: 150
-  m_SpotAngle: 50
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 0
-    m_Resolution: -1
-    m_Strength: 1
-    m_Bias: .0500000007
-    m_NormalBias: .400000006
-  m_Cookie: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_Lightmapping: 4
-  m_BounceIntensity: 1
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
-  m_AreaSize: {x: 1, y: 1}
 --- !u!1001 &2117984972
 Prefab:
   m_ObjectHideFlags: 0
@@ -2936,34 +2816,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 130824, guid: 2bb9a211ba1234944b46a49b23bec6ef, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11498252, guid: 2bb9a211ba1234944b46a49b23bec6ef, type: 2}
-      propertyPath: rayLength
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 12002938, guid: 2bb9a211ba1234944b46a49b23bec6ef, type: 2}
-      propertyPath: m_Parameters.startWidth
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 12002938, guid: 2bb9a211ba1234944b46a49b23bec6ef, type: 2}
-      propertyPath: m_Parameters.endWidth
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 12002938, guid: 2bb9a211ba1234944b46a49b23bec6ef, type: 2}
-      propertyPath: m_Parameters.m_StartColor.rgba
-      value: 4283039999
-      objectReference: {fileID: 0}
-    - target: {fileID: 144364, guid: 2bb9a211ba1234944b46a49b23bec6ef, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2bb9a211ba1234944b46a49b23bec6ef, type: 2}
   m_IsPrefabParent: 0
---- !u!4 &2125702663 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 474486, guid: 2bb9a211ba1234944b46a49b23bec6ef, type: 2}
-  m_PrefabInternal: {fileID: 2117984972}
