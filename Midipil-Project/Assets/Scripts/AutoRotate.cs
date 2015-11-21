@@ -7,6 +7,7 @@ public class AutoRotate : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		transform.Rotate(Vector3.left * speed * Time.deltaTime);
+		//transform.Rotate(Vector3.left * speed * Time.deltaTime);
+		transform.Rotate(new Vector3(Input.GetAxis("Vertical"), Input.GetAxis("Horizontal"), 0));
 	}
 }
