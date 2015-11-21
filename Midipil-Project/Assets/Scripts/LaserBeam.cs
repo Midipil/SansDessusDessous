@@ -7,6 +7,7 @@ public class LaserBeam : MonoBehaviour
 
 	public float rayLength = 100;
 	public float minRadiusRayCast = 0;
+	public float laserDamages = 1;
 	
 	void Start (){
 		line = gameObject.GetComponent<LineRenderer>();
@@ -24,7 +25,7 @@ public class LaserBeam : MonoBehaviour
 			line.SetPosition(1, hit.point);
 			if(hit.transform.tag == "Player")
 			{
-				Debug.Log ("Aie !");
+				hit.transform.GetComponent<Player>().life -= laserDamages;
 			}
 		}
 		else
