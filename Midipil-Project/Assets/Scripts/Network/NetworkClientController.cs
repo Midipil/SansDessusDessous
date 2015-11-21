@@ -138,8 +138,7 @@ public class NetworkClientController : MonoBehaviour {
 		syncTime += Time.deltaTime;
 
 
-        transform.localPosition = Vector3.Lerp(syncStartPosition, syncEndPosition, syncTime / syncDelay);
-        Debug.Log(transform.localPosition);
+        transform.position = Vector3.Lerp(syncStartPosition, syncEndPosition, syncTime / syncDelay);
 
         transform.localRotation = Quaternion.Slerp(syncStartRotation, syncEndRotation, syncTime /syncDelay);
         //this.GetComponent<Rigidbody>().velocity = transform.forward * syncForceMult;
@@ -152,17 +151,11 @@ public class NetworkClientController : MonoBehaviour {
         // Move Up and down
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            Vector3 position2 = this.transform.localPosition;
-            position2.y += 1.0f;
-            this.transform.localPosition = position2;
-           // this.transform.Translate(Vector3.up * speed * Time.deltaTime);
+           this.transform.Translate(Vector3.up * speed * Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            Vector3 position2 = this.transform.localPosition;
-            position2.y -= 1.0f;
-            this.transform.localPosition = position2;
-            //this.transform.Translate(-Vector3.up * speed * Time.deltaTime);
+            this.transform.Translate(-Vector3.up * speed * Time.deltaTime);
         }
 
         transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(newRot), 0.1f);
@@ -181,7 +174,7 @@ public class NetworkClientController : MonoBehaviour {
         // The player is writing to the stream (= he moves its own Character...)
         if (stream.isWriting)
 		{
-            syncPosition = transform.localPosition;
+            syncPosition = transform.position;
             stream.Serialize(ref syncPosition);
 
             syncRotation = transform.localRotation;
@@ -209,14 +202,13 @@ public class NetworkClientController : MonoBehaviour {
             //stream.Serialize(ref syncForceMult);
             stream.Serialize(ref syncNewRot);
 
-            Debug.Log("RECEIVE POSITION " + syncPosition);
 
             // Interpolation : smoothing the transition from the old to the new data values
             syncTime = 0f;
 			syncDelay = Time.time - lastSynchronizationTime;
 			lastSynchronizationTime = Time.time;
 
-            syncStartPosition = transform.localPosition;
+            syncStartPosition = transform.position;
             syncEndPosition = syncPosition;
 
             // Prediction : the rotation is "updated" before the new data is received
