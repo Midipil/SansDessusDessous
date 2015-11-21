@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.VR;
 using System.Collections;
 
 public class RotationController : MonoBehaviour {
@@ -18,6 +19,17 @@ public class RotationController : MonoBehaviour {
 
         // BOOSTER
         //Input.GetButton("")
+        if (Input.GetButton("CalibrationRotation"))
+        {
+            // RECALIBRATE
+           // Camera camera = this.GetComponentInChildren<Camera>();
+            //Vector3 rotation = camera.transform.localRotation.eulerAngles;
+            // Debug.Log(rotation);
+            // rotation
+            //camera.transform.localRotation = Quaternion.identity;
 
+            //this.transform.localRotation = Quaternion.Euler( new Vector3(this.transform.localRotation.eulerAngles.x, rotation.y, this.transform.localRotation.eulerAngles.z));
+        }
+        
     }
 }
