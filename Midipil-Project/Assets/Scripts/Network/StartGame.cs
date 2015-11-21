@@ -3,24 +3,22 @@ using System.Collections;
 
 public class StartGame : MonoBehaviour
 {
-    public GameObject serverView;
-    public GameObject clientView;
+    public GameObject serverViewPrefab;
+    public GameObject clientViewPrefab;
 
     // Use this for initialization
     void Start()
     {
-        serverView.SetActive(false);
-        clientView.SetActive(false);
 
         if (Network.isServer)
         {
             Debug.LogError("LOAD SERVER SCENE !");
-            serverView.SetActive(true);
+            Network.Instantiate(serverViewPrefab, serverViewPrefab.transform.position, serverViewPrefab.transform.rotation, 0);
         }
         else
         {
             Debug.LogError("LOAD CLIENT SCENE !");
-            clientView.SetActive(true);
+            Network.Instantiate(clientViewPrefab, clientViewPrefab.transform.position, clientViewPrefab.transform.rotation, 0);
         }
     }
 }
