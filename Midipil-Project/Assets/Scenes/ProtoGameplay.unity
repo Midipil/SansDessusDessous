@@ -516,6 +516,10 @@ Prefab:
       propertyPath: impactFX
       value: 
       objectReference: {fileID: 132268769}
+    - target: {fileID: 8195208, guid: 2bb9a211ba1234944b46a49b23bec6ef, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2bb9a211ba1234944b46a49b23bec6ef, type: 2}
   m_IsPrefabParent: 0
