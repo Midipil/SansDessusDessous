@@ -645,6 +645,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1962655791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1962655786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efb6fc94d92dbc640b8cd8667ac18a01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2033858770 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 2ffbfb7dae06c7d43adff8a629aca554, type: 3}
