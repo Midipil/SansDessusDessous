@@ -4,14 +4,15 @@ using System.Collections;
 public class OrbsManager : MonoBehaviour {
 
 	private int orbsNum = 20; // 20 MAX
-	private int orbsQuota = 10;
-	private float radius = 45f;
+	private float radius = 47f;
 	public GameObject orbPrefab;
 
 	// Use this for initialization
 	void Start () {
 		for (int i=0; i<orbsNum ; i++){
-			Instantiate(orbPrefab, randomSpherePoint(Vector3.zero, radius), Quaternion.identity);
+			GameObject go = (GameObject)Instantiate(orbPrefab, randomSpherePoint(Vector3.zero, radius), Quaternion.identity);
+			go.transform.parent = this.transform;
+			go.name = "Orb";
 		}
 	}
 	
@@ -29,5 +30,9 @@ public class OrbsManager : MonoBehaviour {
 		float y = p.y + (radius * Mathf.Sin(phi) * Mathf.Sin(theta));
 		float z = p.z + (radius * Mathf.Cos(phi));
 		return new Vector3(x,y,z);
+	}
+
+	public int getOrbsNum(){
+		return orbsNum;
 	}
 }
