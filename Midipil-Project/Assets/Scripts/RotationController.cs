@@ -4,15 +4,25 @@ using System.Collections;
 
 public class RotationController : MonoBehaviour {
 
-    private float boost = 1.0f;
-	private float moveSpeed = 1.0f;
-    private float rotationSpeed = 3.0f;
+    public float boostFactor = 3.0f;
+	public float moveSpeed = 1.0f;
+    public float rotationSpeed = 3.0f;
+
+	public float boostDuration = 4;
+	private float boost = 1.0f;
+	private float lerpTime = 0;
 
 	// Update is called once per frame
 	void Update () {
 
+		float currentBoost = 1;
+		if(boost != 1.0f){
+			currentBoost = Mathf.Lerp(boost, 1.0f, lerpTime);
+			lerpTime += Time.deltaTime / boostDuration;
+		}
+
         // LEFT STICK : MOVE FORWARD / BACKWARD & ROTATE 		
-		transform.Rotate(new Vector3(boost * moveSpeed * Input.GetAxis("Player_Vertical"), rotationSpeed * Input.GetAxis("Player_Horizontal"), 0));
+		transform.Rotate(new Vector3(currentBoost * moveSpeed * Input.GetAxis("Player_Vertical"), rotationSpeed * Input.GetAxis("Player_Horizontal"), 0));
 
         // RIGHT STICK : DRIFT LEFT / RIGHT
         transform.Rotate(new Vector3( 0f, 0f, Input.GetAxis("Player_Right_Horizontal")));
@@ -27,4 +37,9 @@ public class RotationController : MonoBehaviour {
         }
         
     }
+
+	public void Boost(){
+		boost = boostFactor;
+		lerpTime = 0;
+	}
 }
