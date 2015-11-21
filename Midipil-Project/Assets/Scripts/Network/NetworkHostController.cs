@@ -183,7 +183,7 @@ public class NetworkHostController : MonoBehaviour
         // The player is writing to the stream (= he moves its own Character...)
         if (stream.isWriting)
         {
-            syncPosition = transform.localPosition;
+            syncPosition = transform.position;
             stream.Serialize(ref syncPosition);
 
             syncRotation = transform.localRotation;
@@ -216,7 +216,7 @@ public class NetworkHostController : MonoBehaviour
             syncDelay = Time.time - lastSynchronizationTime;
             lastSynchronizationTime = Time.time;
 
-            syncStartPosition = transform.localPosition;
+            syncStartPosition = transform.position;
             syncEndPosition = syncPosition;
 
             // Prediction : the rotation is "updated" before the new data is received
