@@ -22,13 +22,8 @@ public class RotationController : MonoBehaviour {
         if (Input.GetButton("CalibrationRotation"))
         {
             // RECALIBRATE
-           // Camera camera = this.GetComponentInChildren<Camera>();
-            //Vector3 rotation = camera.transform.localRotation.eulerAngles;
-            // Debug.Log(rotation);
-            // rotation
-            //camera.transform.localRotation = Quaternion.identity;
-
-            //this.transform.localRotation = Quaternion.Euler( new Vector3(this.transform.localRotation.eulerAngles.x, rotation.y, this.transform.localRotation.eulerAngles.z));
+			Debug.Log("Recalibrate");
+			UnityEngine.VR.InputTracking.Recenter();
         }
         
     }
