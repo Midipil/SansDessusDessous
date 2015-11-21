@@ -3,7 +3,7 @@ using System.Collections;
 
 public class OrbsManager : MonoBehaviour {
 
-	private int orbsNum = 20;
+	private int orbsNum = 20; // 20 MAX
 	private int orbsQuota = 10;
 	private float radius = 45f;
 	public GameObject orbPrefab;
