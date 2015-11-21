@@ -17,8 +17,10 @@ public class AfterburnerOrientation : MonoBehaviour {
 	void Update () {
 
 		afterburner.GetComponent<ParticleSystem>().startSpeed = (transform.position - previousPosition).magnitude * factor;
+
 		if((-transform.position + previousPosition) != Vector3.zero)
 			afterburner.transform.forward = - transform.position + previousPosition;
+
 		previousPosition = transform.position;
 	}
 }
