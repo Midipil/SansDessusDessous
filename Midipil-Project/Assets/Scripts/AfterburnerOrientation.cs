@@ -16,7 +16,7 @@ public class AfterburnerOrientation : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		afterburner.GetComponent<ParticleSystem>().startSpeed = (transform.position - previousPosition).magnitude * factor;
-		afterburner.transform.forward = - transform.position + previousPosition;
+		//afterburner.transform.forward = - transform.position + previousPosition;
 		previousPosition = transform.position;
 	}
 }
