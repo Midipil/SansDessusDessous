@@ -217,7 +217,7 @@ public class Menu : MonoBehaviour {
 		// The networkManager won't be destroy
 		DontDestroyOnLoad (networkManager);
 
-		Application.LoadLevel("TestGame");
+		Application.LoadLevel("Main");
 	}
 
     public void PlayAsClient()
@@ -229,6 +229,6 @@ public class Menu : MonoBehaviour {
         // The networkManager won't be destroy
         DontDestroyOnLoad(networkManager);
 
-        Application.LoadLevel("TestGame");
+        Application.LoadLevel("Main");
     }
 }
