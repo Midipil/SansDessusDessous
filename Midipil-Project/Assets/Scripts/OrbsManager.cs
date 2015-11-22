@@ -11,6 +11,7 @@ public class OrbsManager : MonoBehaviour {
 	void Start () {
 		for (int i=0; i<orbsNum ; i++){
 			GameObject go = (GameObject)Instantiate(orbPrefab, randomSpherePoint(Vector3.zero, radius), Quaternion.identity);
+            go.transform.LookAt(this.gameObject.transform.position);
 			go.transform.parent = this.transform;
 			go.name = "Orb";
 		}
