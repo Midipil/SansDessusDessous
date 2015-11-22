@@ -50,6 +50,12 @@ public class LaserBeam : MonoBehaviour
             {
                 //hit.transform.GetComponent<Player>().life -= laserDamages;
                 TimerKill();
+				AudioSource source;
+				source = hit.transform.gameObject.GetComponent<AudioSource>();
+				if (!source.isPlaying){
+					hit.transform.gameObject.GetComponent<AudioSource>().Play();
+				}
+
                 impactFX.transform.position = hit.point;
                 impactFX.SetActive(true);
             }
