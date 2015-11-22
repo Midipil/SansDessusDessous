@@ -4,7 +4,7 @@ using System.Collections;
 public class OrbsCollision : MonoBehaviour {
 
 	private int orbsNum; // Set in orbsmanager
-	private int orbsToDestroy = 3;
+	public int orbsToDestroy = 20;
 	private int orbsDestroyed = 0;
 
 	private GameObject player;
