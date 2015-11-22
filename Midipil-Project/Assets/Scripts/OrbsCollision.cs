@@ -32,6 +32,7 @@ public class OrbsCollision : MonoBehaviour {
 			orbsDestroyed++;
 			//Debug.Log("Orb destroyed ("+orbsDestroyed+"/"+orbsNum+" - "+orbsToDestroy+" mini to win");
 			// Play sound
+			this.GetComponent<AudioSource>().Play();
 			// Give boost
 			player.GetComponent<RotationController>().Boost(); 
 
@@ -43,6 +44,7 @@ public class OrbsCollision : MonoBehaviour {
 	}
 	
 	void win(){
+		Debug.Log("Player win");
 		GameObject.FindWithTag("GameManager").GetComponent<GameManager>().playerWin = true;
 	}
 }

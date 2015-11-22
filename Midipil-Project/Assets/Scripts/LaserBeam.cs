@@ -33,8 +33,10 @@ public class LaserBeam : MonoBehaviour
     void Update()
     {
 
-        if (currentTimeHit <= 0)
+        if (currentTimeHit <= 0){
 			GameObject.FindWithTag("GameManager").GetComponent<GameManager>().enemyWin = true;
+			Debug.Log("Enemy win");
+		}
 
         Ray ray = new Ray(transform.position + minRadiusRayCast * transform.forward, transform.forward);
         RaycastHit hit;
