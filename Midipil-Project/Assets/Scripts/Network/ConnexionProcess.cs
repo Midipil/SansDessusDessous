@@ -62,6 +62,7 @@ public class ConnexionProcess : MonoBehaviour {
         else // Try to join a room
         {
             CameraVR.SetActive(false);
+            DisplayMessage("Recherche du serveur");
             Racer.SetActive(false);
             OnJoinRoom();
         }
@@ -88,7 +89,6 @@ public class ConnexionProcess : MonoBehaviour {
 
     public void OnJoinRoom()
     {
-        DisplayMessage("Recherche du serveur");
         currentMenu = MenuState.RoomList;
         RequestRoomList();
     }
