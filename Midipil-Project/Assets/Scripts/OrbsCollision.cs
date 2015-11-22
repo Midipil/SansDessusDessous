@@ -9,8 +9,10 @@ public class OrbsCollision : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		orbsNum = GameObject.Find("Orbs").GetComponent<OrbsManager>().getOrbsNum();
-	}
+		//orbsNum = GameObject.Find("Orbs").GetComponent<OrbsManager>().getOrbsNum();
+        orbsNum = GameObject.Find("OrbsInstanciated2").transform.childCount;
+        Debug.Log(orbsNum);
+    }
 	
 	// Update is called once per frame
 	void Update () {
