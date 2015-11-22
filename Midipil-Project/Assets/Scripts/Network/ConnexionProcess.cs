@@ -14,7 +14,11 @@ public class ConnexionProcess : MonoBehaviour {
 	private NetworkManager networkManagerScript;
 	private HostData[] hostList = null;
     private bool isDone = false;
-    
+
+    public GameObject CameraVR;
+    public GameObject CameraStatic;
+    public GameObject Racer;
+
     public Text m_Msg;
     
 	// Menu states variables
@@ -52,10 +56,13 @@ public class ConnexionProcess : MonoBehaviour {
         // If the application detect an Oculus => Try to create an host
         if(UnityEngine.VR.VRDevice.isPresent)
         {
+            CameraStatic.SetActive(false);
             OnCreateRoom();
         }
         else // Try to join a room
         {
+            CameraVR.SetActive(false);
+            Racer.SetActive(false);
             OnJoinRoom();
         }
 
@@ -75,13 +82,13 @@ public class ConnexionProcess : MonoBehaviour {
     ******************************************************/
     public void OnCreateRoom()
     {
-        DisplayMessage("CREATE ROOM");
+        DisplayMessage("Intialisation du serveur");
         networkManagerScript.StartServer();
     }
 
     public void OnJoinRoom()
     {
-        DisplayMessage("TRY TO JOIN A ROOM");
+        DisplayMessage("Recherche du serveur");
         currentMenu = MenuState.RoomList;
         RequestRoomList();
     }
@@ -120,7 +127,7 @@ public class ConnexionProcess : MonoBehaviour {
     {
         //Debug.Log("SERVER : " + i--);
         //Debug.Log("SERVER : " + i--);
-        DisplayMessage("JOINING SERVER " + hostList[0].gameName);
+        DisplayMessage("Connexion au serveur " + hostList[0].gameName);
         networkManagerScript.JoinServer(hostList[0]);
     }
 
@@ -141,7 +148,7 @@ public class ConnexionProcess : MonoBehaviour {
 	}
 
 	public void setCurrentStateWait(){
-        DisplayMessage("WAITING FOR CLIENT TO JOIN THE ROOM");
+        DisplayMessage("Serveur en attente d'un client");
         currentMenu = MenuState.WaitingRoom;
     }
 	public void setCurrentStateNetwork(){
