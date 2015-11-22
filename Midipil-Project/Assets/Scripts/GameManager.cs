@@ -3,8 +3,8 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour {
 
-	public GameObject winScreen;
-	public GameObject gameoverScreen;
+	private GameObject winScreen;
+	private GameObject gameoverScreen;
 
 	[HideInInspector]
 	public bool playerWin = false;
@@ -16,23 +16,34 @@ public class GameManager : MonoBehaviour {
 	private bool iAmReadyToRestart = false;
 	private bool otherReadyToRestart = false;
 
+	private float restartTimer = 0;
+
 	// Use this for initialization
 	void Start () {
-	
+		if(Network.isClient){
+			winScreen = GameObject.Find("Enemy").transform.FindChild("Win Text").gameObject;
+			gameoverScreen = GameObject.Find("Enemy").transform.FindChild("Lose Text").gameObject;
+		} else if(Network.isServer){
+			winScreen = GameObject.Find("Player").transform.FindChild("Win Text").gameObject;
+			gameoverScreen = GameObject.Find("Player").transform.FindChild("Lose Text").gameObject;
+		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		// if i am the player
-		if(playerWin && !enemyWin){
+		if(Network.isServer && playerWin && !enemyWin){
 			showWinScreen();
 			gameFinished = true;
-		} else if(!playerWin && enemyWin){
+		} else if(Network.isClient && !playerWin && enemyWin){
 			showGameOverScreen();
 			gameFinished = true;
 		}
 
-		if(gameFinished && iAmReadyToRestart && otherReadyToRestart){
+		if(gameFinished){
+			restartTimer += Time.deltaTime;
+		}
+		if(restartTimer > 5){
 			restart();
 		}
 
