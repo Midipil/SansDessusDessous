@@ -43,6 +43,6 @@ public class OrbsCollision : MonoBehaviour {
 	}
 	
 	void win(){
-		Debug.Log ("WIIIIIIIIIIN");
+		GameObject.FindWithTag("GameManager").GetComponent<GameManager>().playerWin = true;
 	}
 }
