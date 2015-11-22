@@ -17,7 +17,6 @@ public class ConnexionProcess : MonoBehaviour {
 
     public GameObject CameraVR;
     public GameObject CameraStatic;
-    public GameObject Racer;
 
     public Text m_Msg;
     
@@ -63,7 +62,6 @@ public class ConnexionProcess : MonoBehaviour {
         {
             CameraVR.SetActive(false);
             DisplayMessage("Recherche du serveur");
-            Racer.SetActive(false);
             OnJoinRoom();
         }
 
