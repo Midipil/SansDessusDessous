@@ -6,9 +6,12 @@ public class OrbsCollision : MonoBehaviour {
 	private int orbsNum; // Set in orbsmanager
 	private int orbsToDestroy = 3;
 	private int orbsDestroyed = 0;
+
+	private GameObject player;
 	
 	// Use this for initialization
 	void Start () {
+		player = GameObject.Find("Player");
 		//orbsNum = GameObject.Find("Orbs").GetComponent<OrbsManager>().getOrbsNum();
         orbsNum = GameObject.Find("OrbsInstanciated2").transform.childCount;
         Debug.Log(orbsNum);
@@ -29,7 +32,11 @@ public class OrbsCollision : MonoBehaviour {
 			orbsDestroyed++;
 			//Debug.Log("Orb destroyed ("+orbsDestroyed+"/"+orbsNum+" - "+orbsToDestroy+" mini to win");
 			// Play sound
+			// Give boost
+			player.GetComponent<RotationController>().Boost(); 
+
 			if (orbsDestroyed >= orbsToDestroy){
+				// End of game
 				win();
 			}
 		}
