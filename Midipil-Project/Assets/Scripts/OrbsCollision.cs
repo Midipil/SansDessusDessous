@@ -13,7 +13,7 @@ public class OrbsCollision : MonoBehaviour {
 	void Start () {
 		player = GameObject.Find("Player");
 		//orbsNum = GameObject.Find("Orbs").GetComponent<OrbsManager>().getOrbsNum();
-        orbsNum = GameObject.Find("OrbsInstanciated2").transform.childCount;
+        orbsNum = GameObject.Find("OrbsInstanciated3").transform.childCount;
         Debug.Log(orbsNum);
     }
 	
