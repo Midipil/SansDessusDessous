@@ -231,6 +231,49 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!1 &98855409
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 98855411}
+  - 114: {fileID: 98855410}
+  m_Layer: 0
+  m_Name: NetworkStarter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &98855410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 98855409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3402b5c32b07464fac7b61cb75d3981, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSolo: {fileID: 290350637}
+  ennemySolo: {fileID: 418125045}
+  playerViewPrefab: {fileID: 197294, guid: 1f373037a43dc944c8fd1a4de931db71, type: 2}
+  ennemyViewPrefab: {fileID: 180642, guid: 29e1f7200579a2c43ac92f2e08f02efe, type: 2}
+--- !u!4 &98855411
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 98855409}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
 --- !u!1001 &207205797
 Prefab:
   m_ObjectHideFlags: 0
@@ -273,6 +316,14 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 91be55714e71f824884c530b35ecabcf, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &290350637 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 130498, guid: b343cc929ed77374586604d81cbc5019, type: 2}
+  m_PrefabInternal: {fileID: 842754924}
+--- !u!1 &418125045 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 160570, guid: 2bb9a211ba1234944b46a49b23bec6ef, type: 2}
+  m_PrefabInternal: {fileID: 2117984972}
 --- !u!1001 &842754924
 Prefab:
   m_ObjectHideFlags: 0
@@ -2814,6 +2865,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 474486, guid: 2bb9a211ba1234944b46a49b23bec6ef, type: 2}
       propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 160570, guid: 2bb9a211ba1234944b46a49b23bec6ef, type: 2}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

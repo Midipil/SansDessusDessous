@@ -3,17 +3,24 @@ using System.Collections;
 
 public class NetworkStarter : MonoBehaviour {
 
+    public GameObject playerSolo;
+    public GameObject ennemySolo;
+
     public GameObject playerViewPrefab;
     public GameObject ennemyViewPrefab;
 
     // Use this for initialization
-    void Start () {
+    void Start() {
         if (GameObject.FindGameObjectWithTag("NetworkManager") == null)
         {
             // SOLO
         }
         else
         {
+            // MULTI 
+            playerSolo.SetActive(false);
+            ennemySolo.SetActive(false);
+
             if (Network.isServer)
             {
                 Debug.LogError("LOAD PLAYER SCENE !");
@@ -25,13 +32,6 @@ public class NetworkStarter : MonoBehaviour {
                 Network.Instantiate(ennemyViewPrefab, ennemyViewPrefab.transform.position, ennemyViewPrefab.transform.rotation, 0);
             }
         }
+    }
+}
 
-        void Update(){
-            if(Input.GetKeyDown(KeyCode.P)){
-
-            }
-            else if (Input.GetKeyDown(KeyCode.E))
-            {
-
-            }
-        }

@@ -7,7 +7,11 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 0
     path: Assets/Scenes/ProtoSphere.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ProtoConnexion.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TestGame.unity
+  - enabled: 1
+    path: Assets/Scenes/Connexion.unity
+  - enabled: 1
+    path: Assets/Scenes/Main.unity
