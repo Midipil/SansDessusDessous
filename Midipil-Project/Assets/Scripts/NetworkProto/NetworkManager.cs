@@ -8,7 +8,7 @@ public class NetworkManager : MonoBehaviour
 {
 	// Main menu variables
 	private GameObject mainMenu;
-	private Menu mainMenuScript;
+	private ConnexionProcess mainMenuScript;
 	private bool hasMessageToMenu = false;
 	private string messageToMenu;
 
@@ -27,12 +27,12 @@ public class NetworkManager : MonoBehaviour
 	public void FindMenu(){
 		// Retrieve the MainMenu gameObject
 		mainMenu = GameObject.Find ("MainMenu");
-		mainMenuScript = mainMenu.GetComponent<Menu>();
+		mainMenuScript = mainMenu.GetComponent<ConnexionProcess>();
 
 		// The game was played and the server or the client has quitted
 		if (hasMessageToMenu) {
 			mainMenuScript.setCurrentStateNetwork();
-			mainMenuScript.setMessage (messageToMenu);
+			mainMenuScript.DisplayMessage(messageToMenu);
 			hasMessageToMenu = false;
 		}
 	}
@@ -48,7 +48,7 @@ public class NetworkManager : MonoBehaviour
 		NetworkConnectionError error  = Network.InitializeServer(2, 25000, !Network.HavePublicAddress());
 		if (error != NetworkConnectionError.NoError)
 			//Debug.Log (error);
-						mainMenuScript.setMessage ("A server has already been started. Try to join it !");
+						mainMenuScript.DisplayMessage("A server has already been started. Try to join it !");
 		// Register the host to the Master : ServerRegisterHost(UniqueGameName, RoomName)
         MasterServer.RegisterHost(typeName, gameName);
     }
@@ -215,7 +215,7 @@ public class NetworkManager : MonoBehaviour
 		// Don't destroy the game object on which the script is attached
 		DontDestroyOnLoad (gameObject);
 		//Load the menu
-		Application.LoadLevel ("Connexion");
+		Application.LoadLevel ("ConnexionSimplier");
 	}
 
 	// Actions called on client during disconnection from server, but also on the server when the connection has disconnected
@@ -228,7 +228,7 @@ public class NetworkManager : MonoBehaviour
 			// Don't destroy the game object on which the script is attached
 			DontDestroyOnLoad (gameObject);
 			// Load the menu
-			Application.LoadLevel ("Connexion");
+			Application.LoadLevel ("ConnexionSimplier");
 		}
 	}
 
