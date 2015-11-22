@@ -36,6 +36,10 @@ public class NetworkPlayerController : MonoBehaviour {
 	private float moveSpeed = 1.0f;
     private float rotationSpeed = 3.0f;
 
+	public float boostFactor = 3.0f;
+	public float boostDuration = 4;
+	private float lerpTime = 0;
+
     // Interpolation values
     private float lastSynchronizationTime = 0f;
     private float syncDelay = 0f;
@@ -87,8 +91,14 @@ public class NetworkPlayerController : MonoBehaviour {
     /*Handle Client player's input*/
     void InputMovement()
     {
-        // LEFT STICK : MOVE FORWARD / BACKWARD & ROTATE 		
-        transform.Rotate(new Vector3(boost * moveSpeed * Input.GetAxis("Player_Vertical"), rotationSpeed * Input.GetAxis("Player_Horizontal"), 0));
+		float currentBoost = 1;
+		if(boost != 1.0f){
+			currentBoost = Mathf.Lerp(boost, 1.0f, lerpTime);
+			lerpTime += Time.deltaTime / boostDuration;
+		}
+
+		// LEFT STICK : MOVE FORWARD / BACKWARD & ROTATE 		
+        transform.Rotate(new Vector3(currentBoost * moveSpeed * Input.GetAxis("Player_Vertical"), rotationSpeed * Input.GetAxis("Player_Horizontal"), 0));
 
         // RIGHT STICK : DRIFT LEFT / RIGHT
         transform.Rotate(new Vector3( 0f, 0f, Input.GetAxis("Player_Right_Horizontal")));
@@ -138,4 +148,9 @@ public class NetworkPlayerController : MonoBehaviour {
             syncEndRotation = syncRotation;
         }
     }
+
+	public void Boost(){
+		boost = boostFactor;
+		lerpTime = 0;
+	}
 }
