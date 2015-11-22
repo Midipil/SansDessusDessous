@@ -29,6 +29,7 @@ public class NetworkPlayerController : MonoBehaviour {
     private NetworkManager networkManagerScript;
 
     public GameObject myCamera;
+    public GameObject m_BearBot;
     
     // Move variables
     private float boost = 1.0f;
@@ -59,7 +60,10 @@ public class NetworkPlayerController : MonoBehaviour {
         {
             myCamera.gameObject.SetActive(false);
         }
-
+        else // Hide the BearBot Model
+        {
+            m_BearBot.SetActive(false);
+        }
         // Find the NetworkManager object
         networkManager = GameObject.FindGameObjectWithTag("NetworkManager");
         networkManagerScript = networkManager.GetComponent<NetworkManager>();

@@ -215,7 +215,7 @@ public class NetworkManager : MonoBehaviour
 		// Don't destroy the game object on which the script is attached
 		DontDestroyOnLoad (gameObject);
 		//Load the menu
-		Application.LoadLevel ("ProtoConnexion");
+		Application.LoadLevel ("Connexion");
 	}
 
 	// Actions called on client during disconnection from server, but also on the server when the connection has disconnected
@@ -228,7 +228,7 @@ public class NetworkManager : MonoBehaviour
 			// Don't destroy the game object on which the script is attached
 			DontDestroyOnLoad (gameObject);
 			// Load the menu
-			Application.LoadLevel ("ProtoConnexion");
+			Application.LoadLevel ("Connexion");
 		}
 	}
 

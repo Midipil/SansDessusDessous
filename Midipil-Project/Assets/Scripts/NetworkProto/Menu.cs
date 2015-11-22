@@ -113,7 +113,6 @@ public class Menu : MonoBehaviour {
     ******************************************************/
     public void OnCreateRoom()
     {
-        Debug.Log("HEYYYYYYYYYY");
         networkManagerScript.StartServer();
     }
 

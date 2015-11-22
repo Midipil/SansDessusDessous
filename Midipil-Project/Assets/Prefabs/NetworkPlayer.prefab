@@ -471,6 +471,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myCamera: {fileID: 115428}
+  m_BearBot: {fileID: 185350}
 --- !u!114 &11426520
 MonoBehaviour:
   m_ObjectHideFlags: 1
