@@ -2,28 +2,21 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
-public class Menu : MonoBehaviour {
+public class ConnexionProcess : MonoBehaviour {
 
 	// Public variables
 	public GameObject networkPrefab;
 	public GameObject mainCamera;
-    public GameObject[] panels;
+    //public GameObject[] panels;
 
 	// Network variables
 	private GameObject networkManager;
 	private NetworkManager networkManagerScript;
 	private HostData[] hostList = null;
     private bool isDone = false;
-
-    public GameObject model;
-    public Transform content;
-
+    
     public Text m_Msg;
     
-	// Gui variables
-	private bool displayMessage = false;
-	private string message;
-		
 	// Menu states variables
 	enum MenuState { TwoPlayers, RoomList, WaitingRoom , Play };
 	private MenuState currentMenu = MenuState.TwoPlayers;
@@ -56,56 +49,25 @@ public class Menu : MonoBehaviour {
         // Enable mouse curser
         //Screen.showCursor = true;
 
-        m_Msg.gameObject.SetActive(false);
-        DisplayCurrentMenu();
-	}
-
-	void Update(){
-
-        if (Input.GetKeyDown(KeyCode.C)){
+        // If the application detect an Oculus => Try to create an host
+        if(UnityEngine.VR.VRDevice.isPresent)
+        {
             OnCreateRoom();
         }
-        if (Input.GetKeyDown(KeyCode.J))
+        else // Try to join a room
         {
             OnJoinRoom();
         }
-    }
+
+	}
 
 
-	/*******************************************************
+    /*******************************************************
 	 * DISPLAY
 	 ******************************************************/
-	
-        /*
-	void OnGUI()
-	{
-		// Menus
-		if(currentMenu == MenuState.TwoPlayers)
-			displayTwoPlayersMenu();
-		else if (currentMenu == MenuState.WaitingRoom)
-			displayWaitingRoom();
-		else if (currentMenu == MenuState.RoomList)
-			displayRoomList();
-
-		if (displayMessage) {
-			GUI.Label (new Rect (0, 0,500,100), message);
-		}
-	}
-    */
-
-
-    private void DisplayCurrentMenu()
+    public void DisplayMessage(string msg)
     {
-        for (int i = 0; i < panels.Length; ++i)
-        {
-            if (i ==  (int)currentMenu)
-                panels[i].SetActive(true);
-            else
-                panels[i].SetActive(false);
-        }
-
-        if (currentMenu == MenuState.TwoPlayers)
-            isDone = false;
+        m_Msg.text = msg;
     }
 
     /*******************************************************
@@ -113,23 +75,24 @@ public class Menu : MonoBehaviour {
     ******************************************************/
     public void OnCreateRoom()
     {
-        Debug.Log("HEYYYYYYYYYY");
+        DisplayMessage("CREATE ROOM");
         networkManagerScript.StartServer();
     }
 
     public void OnJoinRoom()
     {
+        DisplayMessage("TRY TO JOIN A ROOM");
         currentMenu = MenuState.RoomList;
-        DisplayCurrentMenu();
         RequestRoomList();
     }
 
+    /*
     public void OnBack()
     {
         currentMenu = MenuState.TwoPlayers;
         DisplayCurrentMenu();
         networkManagerScript.CloseServer();
-    }
+    }*/
 
     private void RequestRoomList()
     {
@@ -145,29 +108,19 @@ public class Menu : MonoBehaviour {
         Debug.Log("DISPLAY LIST");
         if (hostList != null)
         {
-            Debug.Log("HEYYYYYYYYYYYYYYY2");
             for (int i = 0; i < hostList.Length; i++)
             {
                 Debug.Log(hostList[i].gameName);
-                GameObject join = Instantiate(model);
-                join.transform.parent = content;
-
-                Button button = join.GetComponent<Button>();
-                Text text = join.GetComponentInChildren<Text>();
-                text.text = hostList[i].gameName;
-
-                Debug.Log("SERVER : "+ i);
-                button.onClick.AddListener(delegate () { OnJoinServer(i); });
-
             }
         }
 
     }
 
-    public void OnJoinServer(int i)
+    public void OnJoinServer()
     {
         //Debug.Log("SERVER : " + i--);
         //Debug.Log("SERVER : " + i--);
+        DisplayMessage("JOINING SERVER " + hostList[0].gameName);
         networkManagerScript.JoinServer(hostList[0]);
     }
 
@@ -183,28 +136,18 @@ public class Menu : MonoBehaviour {
         
             isDone = true;
             displayRoomList();
+            OnJoinServer();
         }
 	}
 
 	public void setCurrentStateWait(){
-		currentMenu = MenuState.WaitingRoom;
-        DisplayCurrentMenu();
+        DisplayMessage("WAITING FOR CLIENT TO JOIN THE ROOM");
+        currentMenu = MenuState.WaitingRoom;
     }
 	public void setCurrentStateNetwork(){
 		currentMenu = MenuState.TwoPlayers;
-        DisplayCurrentMenu();
+       // DisplayCurrentMenu();
     }
-
-	public void stopDisplayMessage(){
-        m_Msg.gameObject.SetActive(false);
-    }
-	public void setMessage(string msg){
-		message = msg;
-		displayMessage = true;
-        m_Msg.text = message;
-        m_Msg.gameObject.SetActive(true);
-        Invoke("stopDisplayMessage", 2);
-	}
 
 	/*******************************************************
 	 * Loading next scene functions
@@ -217,7 +160,7 @@ public class Menu : MonoBehaviour {
 		// The networkManager won't be destroy
 		DontDestroyOnLoad (networkManager);
 
-		Application.LoadLevel("TestGame");
+		Application.LoadLevel("Main");
 	}
 
     public void PlayAsClient()
@@ -229,6 +172,6 @@ public class Menu : MonoBehaviour {
         // The networkManager won't be destroy
         DontDestroyOnLoad(networkManager);
 
-        Application.LoadLevel("TestGame");
+        Application.LoadLevel("Main");
     }
 }
