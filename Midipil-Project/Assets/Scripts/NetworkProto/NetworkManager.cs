@@ -75,12 +75,12 @@ public class NetworkManager : MonoBehaviour
 	public void QuitGame(){
 		// Properly close or quit the server
 		if (Network.isServer){
-			messageToMenu = "Successfully closed server";
+			messageToMenu = "Serveur fermé avec succès";
 			hasMessageToMenu = true;
 			CloseServerInGame();
 		}
 		else{
-			messageToMenu = "Successfully disconnected from server";
+			messageToMenu = "Déconnexion du serveur réalisé avec succès";
 			hasMessageToMenu = true;
 			QuitServer();
 		}
