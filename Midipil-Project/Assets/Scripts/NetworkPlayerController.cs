@@ -33,8 +33,8 @@ public class NetworkPlayerController : MonoBehaviour {
     
     // Move variables
     private float boost = 1.0f;
-	private float moveSpeed = 1.0f;
-    private float rotationSpeed = 3.0f;
+	private float moveSpeed = 2.0f;
+    private float rotationSpeed = 6.0f;
 
 	public float boostFactor = 3.0f;
 	public float boostDuration = 4;
