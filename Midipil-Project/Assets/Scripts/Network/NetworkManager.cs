@@ -7,8 +7,7 @@ using System.Collections;
 public class NetworkManager : MonoBehaviour
 {
 	// Main menu variables
-	private GameObject mainMenu;
-	private ConnexionProcess mainMenuScript;
+	private NetworkConnexionProcess mainMenuScript;
 	private bool hasMessageToMenu = false;
 	private string messageToMenu;
 
@@ -23,16 +22,15 @@ public class NetworkManager : MonoBehaviour
 	/*******************************************************
 	 * Initialisation functions
 	 ******************************************************/
-
-	public void FindMenu(){
+	public void Intialize(NetworkConnexionProcess l_mainMenuScript)
+    {
 		// Retrieve the MainMenu gameObject
-		mainMenu = GameObject.Find ("MainMenu");
-		mainMenuScript = mainMenu.GetComponent<ConnexionProcess>();
+		mainMenuScript = l_mainMenuScript;
 
 		// The game was played and the server or the client has quitted
 		if (hasMessageToMenu) {
-			mainMenuScript.setCurrentStateNetwork();
-			mainMenuScript.DisplayMessage(messageToMenu);
+			mainMenuScript.setCurrentStateHome();
+			mainMenuScript.setMessage(messageToMenu);
 			hasMessageToMenu = false;
 		}
 	}
@@ -40,7 +38,6 @@ public class NetworkManager : MonoBehaviour
 	/*******************************************************
 	 * Server actions : Start or Close a server
 	 ******************************************************/
-
     public void StartServer()
     {
 		// Initialize the server on the network : 
@@ -48,7 +45,7 @@ public class NetworkManager : MonoBehaviour
 		NetworkConnectionError error  = Network.InitializeServer(2, 25000, !Network.HavePublicAddress());
 		if (error != NetworkConnectionError.NoError)
 			//Debug.Log (error);
-						mainMenuScript.DisplayMessage("A server has already been started. Try to join it !");
+						mainMenuScript.setMessage("A server has already been started. Try to join it !");
 		// Register the host to the Master : ServerRegisterHost(UniqueGameName, RoomName)
         MasterServer.RegisterHost(typeName, gameName);
     }
@@ -64,32 +61,31 @@ public class NetworkManager : MonoBehaviour
 			Debug.Log("Disconnecting: "+
 			          Network.connections[0].ipAddress+":"+Network.connections[0].port);
 			Network.CloseConnection(Network.connections[0], true);
-		} 
-	}
+		}
+    }
 
 
 	/*******************************************************
 	 * Server and Client actions : quit the game and go back to the menu
 	 ******************************************************/
-	
 	public void QuitGame(){
 		// Properly close or quit the server
 		if (Network.isServer){
-			messageToMenu = "Serveur fermé avec succès";
+			messageToMenu = "Server successfully closed";
 			hasMessageToMenu = true;
 			CloseServerInGame();
 		}
 		else{
-			messageToMenu = "Déconnexion du serveur réalisé avec succès";
+			messageToMenu = "Disconnected from server";
 			hasMessageToMenu = true;
 			QuitServer();
 		}
+        
 	}
 
 	/*******************************************************
 	 * Client actions : Join or Quit a server
 	 ******************************************************/
-
 	public void JoinServer(HostData hostData)
 	{
 		Network.Connect(hostData);
@@ -106,6 +102,7 @@ public class NetworkManager : MonoBehaviour
 	 ******************************************************/
     void Update()
     {
+      
         if (MasterServer.PollHostList().Length != 0)
         {
             hostList = MasterServer.PollHostList();
@@ -166,13 +163,10 @@ public class NetworkManager : MonoBehaviour
 
 	/***************************************************************************
 	 * Messages sent on the server or the client when a specific event occures
-	 **************************************************************************/
-	
+	 **************************************************************************/	
 	// Actions called on the server whenever it has been succesfully initialized
 	void OnServerInitialized()
 	{
-        Debug.Log("SERVER INITALIZED");
-
         // Display the waiting room for the server-player
         mainMenuScript.setCurrentStateWait();
 	}
@@ -207,6 +201,7 @@ public class NetworkManager : MonoBehaviour
 
 	// Actions called on the server whenever a player is disconnected from the server
 	void OnPlayerDisconnected(){
+        Debug.Log("DISCONNECTED");
 		if(!hasMessageToMenu){
 			messageToMenu = "The client has quit";
 			hasMessageToMenu = true;
@@ -215,7 +210,7 @@ public class NetworkManager : MonoBehaviour
 		// Don't destroy the game object on which the script is attached
 		DontDestroyOnLoad (gameObject);
 		//Load the menu
-		Application.LoadLevel ("ConnexionSimplier");
+		Application.LoadLevel ("ConnexionFull");
 	}
 
 	// Actions called on client during disconnection from server, but also on the server when the connection has disconnected
@@ -228,7 +223,7 @@ public class NetworkManager : MonoBehaviour
 			// Don't destroy the game object on which the script is attached
 			DontDestroyOnLoad (gameObject);
 			// Load the menu
-			Application.LoadLevel ("ConnexionSimplier");
+			Application.LoadLevel ("ConnexionFull");
 		}
 	}
 

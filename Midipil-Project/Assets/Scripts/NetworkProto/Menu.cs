@@ -47,7 +47,7 @@ public class Menu : MonoBehaviour {
 			networkManagerScript = networkManager.GetComponent<NetworkManager>();
 		}
 
-		networkManagerScript.FindMenu();
+		//networkManagerScript.FindMenu();
 	}
 
 

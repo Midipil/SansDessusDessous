@@ -43,7 +43,7 @@ public class ConnexionProcess : MonoBehaviour {
 			networkManagerScript = networkManager.GetComponent<NetworkManager>();
 		}
 
-		networkManagerScript.FindMenu();
+		//networkManagerScript.FindMenu();
 	}
 
 

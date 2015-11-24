@@ -9,14 +9,19 @@ public class NetworkStarter : MonoBehaviour {
     public GameObject playerViewPrefab;
     public GameObject ennemyViewPrefab;
 
+    private NetworkManager networkManagerScript;
+
     // Use this for initialization
     void Start() {
-        if (GameObject.FindGameObjectWithTag("NetworkManager") == null)
+        GameObject networkManager = GameObject.FindGameObjectWithTag("NetworkManager");
+        if (networkManager == null)
         {
             // SOLO
         }
         else
         {
+            networkManagerScript = networkManager.GetComponent<NetworkManager>();
+
             // MULTI 
             playerSolo.SetActive(false);
             ennemySolo.SetActive(false);
@@ -31,6 +36,15 @@ public class NetworkStarter : MonoBehaviour {
                 Debug.LogError("LOAD ENNEMY SCENE !");
                 Network.Instantiate(ennemyViewPrefab, ennemyViewPrefab.transform.position, ennemyViewPrefab.transform.rotation, 0);
             }
+        }
+    }
+
+    void Update()
+    {
+        // QUIT
+        if (networkManagerScript && (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Quit")))
+        {
+            networkManagerScript.QuitGame();
         }
     }
 }
