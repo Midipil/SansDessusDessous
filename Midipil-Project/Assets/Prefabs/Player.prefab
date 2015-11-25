@@ -28,7 +28,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 464268}
-  - 114: {fileID: 11468812}
+  - 114: {fileID: 11409198}
+  - 114: {fileID: 11434696}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -757,6 +758,21 @@ MonoBehaviour:
   effectWidth: 2
   effectDistance: 0
   force: 140
+--- !u!114 &11409198
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 130498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfd9d0fa5beb9ca45bb68e3737c1b67f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boostFactor: 3
+  moveSpeed: 1
+  rotationSpeed: 3
+  boostDuration: 4
 --- !u!114 &11422884
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -769,6 +785,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 100
+--- !u!114 &11434696
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 130498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf1004e1275b35a449ab2ede64b555e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  winScreen: {fileID: 190556}
+  gameoverScreen: {fileID: 177192}
 --- !u!114 &11443400
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -782,21 +811,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   afterburner: {fileID: 108920}
   factor: 32
---- !u!114 &11468812
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 130498}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f4a681d69d4de44287aea1773376b48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boostFactor: 3
-  moveSpeed: 1
-  rotationSpeed: 3
-  boostDuration: 4
 --- !u!114 &11471852
 MonoBehaviour:
   m_ObjectHideFlags: 1

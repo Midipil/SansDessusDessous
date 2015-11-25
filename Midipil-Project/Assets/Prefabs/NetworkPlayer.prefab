@@ -188,6 +188,7 @@ GameObject:
   - 4: {fileID: 433544}
   - 148: {fileID: 14811088}
   - 114: {fileID: 11415432}
+  - 114: {fileID: 11416328}
   m_Layer: 0
   m_Name: NetworkPlayer
   m_TagString: Player
@@ -841,6 +842,19 @@ MonoBehaviour:
   m_BearBot: {fileID: 185350}
   boostFactor: 3
   boostDuration: 4
+--- !u!114 &11416328
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 197294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf1004e1275b35a449ab2ede64b555e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  winScreen: {fileID: 110804}
+  gameoverScreen: {fileID: 118916}
 --- !u!114 &11426520
 MonoBehaviour:
   m_ObjectHideFlags: 1
