@@ -3,10 +3,15 @@ using System.Collections;
 
 public class EnemyController : MonoBehaviour {
 
-	// Update is called once per frame
-	void Update () {
+	float speed = 1f; 
 
-		transform.Rotate(new Vector3(Input.GetAxis("Enemy_Vertical"), Input.GetAxis("Enemy_Horizontal"), 0));
-		
+	// Update is called once per frame
+	void FixedUpdate() {
+
+		// Old method
+		//transform.Rotate(new Vector3(Input.GetAxis("Enemy_Vertical"), Input.GetAxis("Enemy_Horizontal"), 0));
+
+		this.GetComponent<Rigidbody>().AddTorque(transform.up * Input.GetAxis("Enemy_Horizontal") * speed);
+		this.GetComponent<Rigidbody>().AddTorque(- transform.right * Input.GetAxis("Enemy_Vertical") * speed);
 	}
 }
