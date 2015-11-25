@@ -165,6 +165,7 @@ GameObject:
   - 148: {fileID: 14896806}
   - 114: {fileID: 11495704}
   - 54: {fileID: 5484238}
+  - 114: {fileID: 11410990}
   m_Layer: 0
   m_Name: NetworkEnemy
   m_TagString: Enemy
@@ -718,7 +719,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 166792}
-  m_Text: Victoire !
+  m_Text: You Win !
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -739,7 +740,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 184552}
-  m_Text: "D\xE9faite..."
+  m_Text: Game Over
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -817,6 +818,19 @@ Light:
   m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_AreaSize: {x: 1, y: 1}
+--- !u!114 &11410990
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 180642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf1004e1275b35a449ab2ede64b555e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  winScreen: {fileID: 166792}
+  gameoverScreen: {fileID: 184552}
 --- !u!114 &11478178
 MonoBehaviour:
   m_ObjectHideFlags: 1
