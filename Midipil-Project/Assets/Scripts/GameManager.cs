@@ -21,11 +21,11 @@ public class GameManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		if(Network.isClient){
-			winScreen = GameObject.Find("NetworkEnemy").transform.FindChild("Win Text").gameObject;
-			gameoverScreen = GameObject.Find("NetworkEnemy").transform.FindChild("Lose Text").gameObject;
+			winScreen = GameObject.FindWithTag("Enemy").transform.FindChild("Win Text").gameObject;
+			gameoverScreen = GameObject.FindWithTag("Enemy").transform.FindChild("Lose Text").gameObject;
 		} else if(Network.isServer){
-			winScreen = GameObject.Find("NetworkPlayer").transform.FindChild("Win Text").gameObject;
-			gameoverScreen = GameObject.Find("NetworkPlayer").transform.FindChild("Lose Text").gameObject;
+			winScreen = GameObject.FindWithTag("Player").transform.FindChild("Win Text").gameObject;
+			gameoverScreen = GameObject.FindWithTag("Player").transform.FindChild("Lose Text").gameObject;
 		}
 	}
 	
