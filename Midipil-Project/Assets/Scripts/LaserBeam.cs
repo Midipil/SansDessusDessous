@@ -11,7 +11,6 @@ public class LaserBeam : MonoBehaviour
     public GameObject impactFX;
     public int timeToKill = 3;
     public float currentTimeHit;
-    private static System.Timers.Timer timerToKill;
 
 
     void Start()
@@ -19,17 +18,6 @@ public class LaserBeam : MonoBehaviour
         line = gameObject.GetComponent<LineRenderer>();
 		currentTimeHit = timeToKill;
     }
-
-    public static void TimerKill()
-    {
-        /*timerToKill = new System.Timers.Timer(timeToKill);
-        timerToKill.Enabled = true;
-        timerToKill.AutoReset = true;
-        timerToKill.Start();
-        timerToKill.Elapsed +=
-            (object sender, System.Timers.ElapsedEventArgs e) => currentTimeHit -= 1000;
-*/    }
-
 
     void Update()
     {
@@ -47,7 +35,7 @@ public class LaserBeam : MonoBehaviour
         if (Physics.Raycast(ray, out hit, rayLength))
         {
             line.SetPosition(1, hit.point);
-            if (hit.transform.tag == "Player")
+            if (hit.transform.parent.tag == "Player")
             {
                 //hit.transform.GetComponent<Player>().life -= laserDamages;
                 //TimerKill();
@@ -60,10 +48,6 @@ public class LaserBeam : MonoBehaviour
 
                 impactFX.transform.position = hit.point;
                 impactFX.SetActive(true);
-            }
-            else
-            {
-                timerToKill.Stop();
             }
         }
         else
