@@ -830,6 +830,8 @@ MonoBehaviour:
   minRadiusRayCast: 30
   laserDamages: 1
   impactFX: {fileID: 139924}
+  timeToKill: 3
+  currentTimeHit: 0
 --- !u!114 &11495704
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4048,6 +4050,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: timeToKill
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

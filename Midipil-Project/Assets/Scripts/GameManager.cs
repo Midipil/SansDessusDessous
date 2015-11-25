@@ -17,7 +17,11 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
+		playerWin = false;
+		enemyWin = false;
+		gameFinished = false;
+		iAmReadyToRestart = false;
+		otherReadyToRestart = false;
 	}
 	
 	// Update is called once per frame
@@ -47,7 +51,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void restart(){
-		Application.LoadLevel("Main");
+		Application.LoadLevel("ConnexionFull");
 	}
 
 	public bool IsPlayer(){

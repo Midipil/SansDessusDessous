@@ -785,6 +785,8 @@ MonoBehaviour:
   minRadiusRayCast: 30
   laserDamages: 1
   impactFX: {fileID: 130824}
+  timeToKill: 3
+  currentTimeHit: 0
 --- !u!120 &12002938
 LineRenderer:
   m_ObjectHideFlags: 1
