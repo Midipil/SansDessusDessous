@@ -28,8 +28,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 464268}
-  - 114: {fileID: 11409198}
-  - 114: {fileID: 11434696}
+  - 114: {fileID: 11405656}
+  - 54: {fileID: 5419120}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -63,6 +63,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 403096}
+  - 82: {fileID: 8252226}
   m_Layer: 0
   m_Name: Bearbot-vaisseau
   m_TagString: Untagged
@@ -488,6 +489,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 183944}
   m_Mesh: {fileID: 4300002, guid: 5715168a3fd38d041804e85da59b0e43, type: 3}
+--- !u!54 &5419120
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 130498}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 3
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!54 &5467016
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -662,6 +678,76 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!82 &8252226
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 145120}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 8e5ebd911c18e9b458795308d745d1ee, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 10
+  MaxDistance: 150
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!92 &9242792
 Behaviour:
   m_ObjectHideFlags: 1
@@ -743,6 +829,17 @@ Light:
   m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_AreaSize: {x: 1, y: 1}
+--- !u!114 &11405656
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 130498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfd9d0fa5beb9ca45bb68e3737c1b67f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11406984
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -758,21 +855,6 @@ MonoBehaviour:
   effectWidth: 2
   effectDistance: 0
   force: 140
---- !u!114 &11409198
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 130498}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfd9d0fa5beb9ca45bb68e3737c1b67f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boostFactor: 3
-  moveSpeed: 1
-  rotationSpeed: 3
-  boostDuration: 4
 --- !u!114 &11422884
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -785,19 +867,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 100
---- !u!114 &11434696
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 130498}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf1004e1275b35a449ab2ede64b555e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  winScreen: {fileID: 190556}
-  gameoverScreen: {fileID: 177192}
 --- !u!114 &11443400
 MonoBehaviour:
   m_ObjectHideFlags: 1

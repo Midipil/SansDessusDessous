@@ -4,16 +4,17 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
-    public float boostFactor = 3.0f;
-	public float moveSpeed = 1.0f;
-    public float rotationSpeed = 3.0f;
+    private float boostFactor = 3.0f;
+	private float moveSpeed = 1.5f;
+    private float rotationSpeed = 5.0f;
+	private float sidewaysSpeed = 1.0f;
 
-	public float boostDuration = 4;
-	private float boost = 1.0f;
+	private float boostDuration = 1;
+	private float boost = 3.0f;
 	private float lerpTime = 0;
 
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 
 		float currentBoost = 1;
 		if(boost != 1.0f){
@@ -21,11 +22,17 @@ public class PlayerController : MonoBehaviour {
 			lerpTime += Time.deltaTime / boostDuration;
 		}
 
+		// Left/right
+		//Debug.Log(currentBoost);
+		this.GetComponent<Rigidbody>().AddTorque( transform.up * rotationSpeed * Input.GetAxis("Player_Horizontal"));
+		this.GetComponent<Rigidbody>().AddTorque( transform.right * currentBoost * moveSpeed * Input.GetAxis("Player_Vertical"));
+		this.GetComponent<Rigidbody>().AddTorque(- transform.forward * sidewaysSpeed * Input.GetAxis("Player_Right_Horizontal"));
+
         // LEFT STICK : MOVE FORWARD / BACKWARD & ROTATE 		
-		transform.Rotate(new Vector3(currentBoost * moveSpeed * Input.GetAxis("Player_Vertical"), rotationSpeed * Input.GetAxis("Player_Horizontal"), 0));
+		//transform.Rotate(new Vector3(currentBoost * moveSpeed * Input.GetAxis("Player_Vertical"), rotationSpeed * Input.GetAxis("Player_Horizontal"), 0));
 
         // RIGHT STICK : DRIFT LEFT / RIGHT
-        transform.Rotate(new Vector3( 0f, 0f, Input.GetAxis("Player_Right_Horizontal")));
+        //transform.Rotate(new Vector3( 0f, 0f, Input.GetAxis("Player_Right_Horizontal")));
 
         // BOOSTER
         //Input.GetButton("")
