@@ -28,7 +28,7 @@ public class OrbsCollision : MonoBehaviour {
 		
 		if (!o.isTriggered()){
 			o.setTriggered();
-			Destroy(other.gameObject);
+			Destroy(other.transform.parent.gameObject);
 			orbsDestroyed++;
 			//Debug.Log("Orb destroyed ("+orbsDestroyed+"/"+orbsNum+" - "+orbsToDestroy+" mini to win");
 			// Play sound
