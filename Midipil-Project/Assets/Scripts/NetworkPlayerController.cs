@@ -40,6 +40,8 @@ public class NetworkPlayerController : MonoBehaviour {
 	private float boost = 3.0f;
 	private float lerpTime = 0;
 
+	private AudioSource shipSound;
+
     // Interpolation values
     private float lastSynchronizationTime = 0f;
     private float syncDelay = 0f;
@@ -55,8 +57,13 @@ public class NetworkPlayerController : MonoBehaviour {
         lastSynchronizationTime = Time.time;
     }
 
+
     void Start()
     {
+
+		GameObject ab = GameObject.Find("Afterburner").gameObject;
+		shipSound = ab.GetComponent<AudioSource>();
+
         m_networkView = this.GetComponent<NetworkView>();
 
         // If the HostInstance isn't the player's one, disable its camera
@@ -91,10 +98,20 @@ public class NetworkPlayerController : MonoBehaviour {
     /*Handle Client player's input*/
     void InputMovement()
     {
+		// Update sound volume
+		float maxMag = 0.5f;
+		float vol = this.GetComponent<Rigidbody>().angularVelocity.magnitude / maxMag;
+		if (vol > 1.0f) vol = 1.0f;
+		shipSound.volume = vol;
+		
 		float currentBoost = 1;
 		if(boost != 1.0f){
 			currentBoost = Mathf.Lerp(boost, 1.0f, lerpTime);
 			lerpTime += Time.deltaTime / boostDuration;
+			shipSound.pitch = currentBoost/5+0.8f;
+		}
+		if (currentBoost <= 1.0f){
+			shipSound.pitch = vol;
 		}
 
 		// Left/right
