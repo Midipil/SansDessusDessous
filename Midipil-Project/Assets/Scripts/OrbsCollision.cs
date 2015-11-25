@@ -34,7 +34,7 @@ public class OrbsCollision : MonoBehaviour {
 			// Play sound
 			this.transform.Find("Bearbot-vaisseau").GetComponent<AudioSource>().Play();
 			// Give boost
-			player.GetComponent<RotationController>().Boost(); 
+			player.GetComponent<PlayerController>().Boost(); 
 
 			if (orbsDestroyed >= orbsToDestroy){
 				// End of game

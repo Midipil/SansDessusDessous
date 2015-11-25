@@ -3,9 +3,6 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour {
 
-	private GameObject winScreen;
-	private GameObject gameoverScreen;
-
 	[HideInInspector]
 	public bool playerWin = false;
 	[HideInInspector]
@@ -20,29 +17,23 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		if(IsEnemy()){
-			winScreen = GameObject.FindWithTag("Enemy").transform.FindChild("Win Text").gameObject;
-			gameoverScreen = GameObject.FindWithTag("Enemy").transform.FindChild("Lose Text").gameObject;
-		} else if(IsPlayer()){
-			winScreen = GameObject.FindWithTag("Player").transform.FindChild("Win Text").gameObject;
-			gameoverScreen = GameObject.FindWithTag("Player").transform.FindChild("Lose Text").gameObject;
-		}
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		// if i am the player
 		if(IsPlayer() && playerWin && !enemyWin){
-			showWinScreen();
+			GameObject.FindWithTag("Player").GetComponent<GameOverScreen>().showWinScreen();
 			gameFinished = true;
 		} else if(IsPlayer() && !playerWin && enemyWin){
-			showGameOverScreen();
+			GameObject.FindWithTag("Player").GetComponent<GameOverScreen>().showGameOverScreen();
 			gameFinished = true;
 		} else if(IsEnemy() && !playerWin && enemyWin){
-			showWinScreen();
+			GameObject.FindWithTag("Enemy").GetComponent<GameOverScreen>().showWinScreen();
 			gameFinished = true;
 		} else if(IsEnemy() && playerWin && !enemyWin){
-			showGameOverScreen();
+			GameObject.FindWithTag("Enemy").GetComponent<GameOverScreen>().showGameOverScreen();
 			gameFinished = true;
 		}
 
@@ -53,14 +44,6 @@ public class GameManager : MonoBehaviour {
 			restart();
 		}
 
-	}
-
-	void showWinScreen(){
-		winScreen.SetActive(true);
-	}
-
-	void showGameOverScreen(){
-		gameoverScreen.SetActive(true);
 	}
 
 	void restart(){
