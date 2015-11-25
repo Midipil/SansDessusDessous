@@ -20,10 +20,10 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		if(Network.isClient){
+		if(IsEnemy()){
 			winScreen = GameObject.FindWithTag("Enemy").transform.FindChild("Win Text").gameObject;
 			gameoverScreen = GameObject.FindWithTag("Enemy").transform.FindChild("Lose Text").gameObject;
-		} else if(Network.isServer){
+		} else if(IsPlayer()){
 			winScreen = GameObject.FindWithTag("Player").transform.FindChild("Win Text").gameObject;
 			gameoverScreen = GameObject.FindWithTag("Player").transform.FindChild("Lose Text").gameObject;
 		}
@@ -32,10 +32,16 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		// if i am the player
-		if(Network.isServer && playerWin && !enemyWin){
+		if(IsPlayer() && playerWin && !enemyWin){
 			showWinScreen();
 			gameFinished = true;
-		} else if(Network.isClient && !playerWin && enemyWin){
+		} else if(IsPlayer() && !playerWin && enemyWin){
+			showGameOverScreen();
+			gameFinished = true;
+		} else if(IsEnemy() && !playerWin && enemyWin){
+			showWinScreen();
+			gameFinished = true;
+		} else if(IsEnemy() && playerWin && !enemyWin){
 			showGameOverScreen();
 			gameFinished = true;
 		}
@@ -59,5 +65,13 @@ public class GameManager : MonoBehaviour {
 
 	void restart(){
 		Application.LoadLevel("Main");
+	}
+
+	public bool IsPlayer(){
+		return Network.isServer;
+	}
+
+	public bool IsEnemy(){
+		return Network.isClient;
 	}
 }
