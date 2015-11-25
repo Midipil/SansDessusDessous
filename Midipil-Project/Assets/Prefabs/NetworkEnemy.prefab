@@ -164,6 +164,7 @@ GameObject:
   - 114: {fileID: 11478178}
   - 148: {fileID: 14896806}
   - 114: {fileID: 11495704}
+  - 54: {fileID: 5484238}
   m_Layer: 0
   m_Name: NetworkEnemy
   m_TagString: Enemy
@@ -541,6 +542,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 113400}
   m_Mesh: {fileID: 4300002, guid: ac96bcd55a85232458e45cec4495d7f2, type: 3}
+--- !u!54 &5484238
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 180642}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 3
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!81 &8133364
 AudioListener:
   m_ObjectHideFlags: 1

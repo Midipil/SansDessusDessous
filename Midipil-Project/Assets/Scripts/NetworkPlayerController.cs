@@ -31,13 +31,13 @@ public class NetworkPlayerController : MonoBehaviour {
     public GameObject myCamera;
     public GameObject m_BearBot;
     
-    // Move variables
-    private float boost = 1.0f;
-	private float moveSpeed = 2.0f;
-    private float rotationSpeed = 6.0f;
-
-	public float boostFactor = 3.0f;
-	public float boostDuration = 4;
+	private float boostFactor = 3.0f;
+	private float moveSpeed = 1.5f;
+	private float rotationSpeed = 5.0f;
+	private float sidewaysSpeed = 1.0f;
+	
+	private float boostDuration = 1;
+	private float boost = 3.0f;
 	private float lerpTime = 0;
 
     // Interpolation values
@@ -97,11 +97,11 @@ public class NetworkPlayerController : MonoBehaviour {
 			lerpTime += Time.deltaTime / boostDuration;
 		}
 
-		// LEFT STICK : MOVE FORWARD / BACKWARD & ROTATE 		
-        transform.Rotate(new Vector3(currentBoost * moveSpeed * Input.GetAxis("Player_Vertical"), rotationSpeed * Input.GetAxis("Player_Horizontal"), 0));
-
-        // RIGHT STICK : DRIFT LEFT / RIGHT
-        transform.Rotate(new Vector3( 0f, 0f, Input.GetAxis("Player_Right_Horizontal")));
+		// Left/right
+		//Debug.Log(currentBoost);
+		this.GetComponent<Rigidbody>().AddTorque( transform.up * rotationSpeed * Input.GetAxis("Player_Horizontal"));
+		this.GetComponent<Rigidbody>().AddTorque( transform.right * currentBoost * moveSpeed * Input.GetAxis("Player_Vertical"));
+		this.GetComponent<Rigidbody>().AddTorque(- transform.forward * sidewaysSpeed * Input.GetAxis("Player_Right_Horizontal"));
 
         // BOOSTER
         //Input.GetButton("")

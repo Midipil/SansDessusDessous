@@ -29,6 +29,8 @@ public class NetworkEnemyController : MonoBehaviour {
 
     public GameObject myCamera;
 
+	float speed = 1.5f;
+
     // Interpolation values
     private float lastSynchronizationTime = 0f;
     private float syncDelay = 0f;
@@ -78,8 +80,9 @@ public class NetworkEnemyController : MonoBehaviour {
     /*Handle Client player's input*/
     void InputMovement()
     {
-        transform.Rotate(new Vector3(Input.GetAxis("Enemy_Vertical"), Input.GetAxis("Enemy_Horizontal"), 0));
-    }
+		this.GetComponent<Rigidbody>().AddTorque(transform.up * Input.GetAxis("Enemy_Horizontal") * speed);
+		this.GetComponent<Rigidbody>().AddTorque(- transform.right * Input.GetAxis("Enemy_Vertical") * speed);
+	}
 
     /* Update the rotation and velocity of the ClientInstance according to the movements of the Character of the player's opponent*/
     private void SyncedMovement()

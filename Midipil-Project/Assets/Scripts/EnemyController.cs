@@ -3,7 +3,7 @@ using System.Collections;
 
 public class EnemyController : MonoBehaviour {
 
-	float speed = 1f; 
+	float speed = 1.5f; 
 
 	// Update is called once per frame
 	void FixedUpdate() {
