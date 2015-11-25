@@ -148,6 +148,7 @@ GameObject:
   - 114: {fileID: 11498252}
   - 114: {fileID: 11443824}
   - 54: {fileID: 5490902}
+  - 114: {fileID: 11434568}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -745,6 +746,19 @@ Light:
   m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_AreaSize: {x: 1, y: 1}
+--- !u!114 &11434568
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 160570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf1004e1275b35a449ab2ede64b555e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  winScreen: {fileID: 187226}
+  gameoverScreen: {fileID: 118074}
 --- !u!114 &11443824
 MonoBehaviour:
   m_ObjectHideFlags: 1
