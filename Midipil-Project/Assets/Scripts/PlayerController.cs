@@ -2,7 +2,7 @@
 using UnityEngine.VR;
 using System.Collections;
 
-public class RotationController : MonoBehaviour {
+public class PlayerController : MonoBehaviour {
 
     public float boostFactor = 3.0f;
 	public float moveSpeed = 1.0f;
