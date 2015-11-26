@@ -252,9 +252,13 @@ public class NetworkConnexionProcess : MonoBehaviour
     // SERVER LIST ROOM =================================
     public void OnBack()
     {
+        if (currentMenu == ConnexionState.WaitingRoom)
+        {
+            Debug.Log("CLOSE SERVER");
+            networkManagerScript.CloseServer();
+        }
         currentMenu = ConnexionState.TwoPlayers;
         DisplayCurrentMenu();
-        networkManagerScript.CloseServer();
     }
 
     private void RequestRoomList()

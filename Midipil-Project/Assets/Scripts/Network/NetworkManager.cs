@@ -53,7 +53,8 @@ public class NetworkManager : MonoBehaviour
 	public void CloseServer(){
 		Network.Disconnect();
 		MasterServer.UnregisterHost();
-	}
+        MasterServer.ClearHostList();
+    }
 
 	public void CloseServerInGame(){
 		// Kick the player off the server before closing it (see OnPlayerDisconnected() function)
