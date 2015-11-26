@@ -12,8 +12,8 @@ public class NetworkManager : MonoBehaviour
 	private string messageToMenu;
 
 	// Network variables
-	private const string typeName = "VRDragon";
-	private const string gameName = "RoomName";
+	private const string typeName = "LaCouveuseVR";
+	private const string gameName = "RunnerVSGuardian";
 
     private bool isRefreshingHostListNeeded = false;
     private HostData[] hostList = null;
@@ -44,10 +44,11 @@ public class NetworkManager : MonoBehaviour
 		// InitializeServer(MaxPlayerAmount, PortNumber, Use NAT punchthrough if no public IP present)
 		NetworkConnectionError error  = Network.InitializeServer(2, 25000, !Network.HavePublicAddress());
 		if (error != NetworkConnectionError.NoError)
-			//Debug.Log (error);
-						mainMenuScript.setMessage("A server has already been started. Try to join it !");
-		// Register the host to the Master : ServerRegisterHost(UniqueGameName, RoomName)
-        MasterServer.RegisterHost(typeName, gameName);
+            mainMenuScript.setMessage("The Runner has already been chosen.\n Try to play as the Guardian to join the game !");
+            //Debug.Log (error);
+            //mainMenuScript.setMessage("A server has already been started by another player.\n Try to play as the Guardian to join the game !");
+            // Register the host to the Master : ServerRegisterHost(UniqueGameName, RoomName)
+            MasterServer.RegisterHost(typeName, gameName);
     }
 	
 	public void CloseServer(){
@@ -72,12 +73,12 @@ public class NetworkManager : MonoBehaviour
 	public void QuitGame(){
 		// Properly close or quit the server
 		if (Network.isServer){
-			messageToMenu = "Server successfully closed";
+			messageToMenu = "The server has been successfully closed";
 			hasMessageToMenu = true;
 			CloseServerInGame();
 		}
 		else{
-			messageToMenu = "Disconnected from server";
+			messageToMenu = "You have been successfully disconnected from the server";
 			hasMessageToMenu = true;
 			QuitServer();
 		}
@@ -213,7 +214,7 @@ public class NetworkManager : MonoBehaviour
 	void OnPlayerDisconnected(){
         Debug.Log("DISCONNECTED");
 		if(!hasMessageToMenu){
-			messageToMenu = "The client has quit";
+			messageToMenu = "The Guardian has quit the game"; // The client has quit
 			hasMessageToMenu = true;
 		}
 		CloseServer ();
@@ -227,7 +228,7 @@ public class NetworkManager : MonoBehaviour
 	void OnDisconnectedFromServer(){
 		if(Network.isClient){
 			if(!hasMessageToMenu){
-			   messageToMenu = "The server has been closed";
+			   messageToMenu = "The server has been closed.\nThe Runner has quit the game.";
 			   hasMessageToMenu = true;
 			}
 			// Don't destroy the game object on which the script is attached
