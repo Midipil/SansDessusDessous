@@ -341,7 +341,7 @@ public class NetworkConnexionProcess : MonoBehaviour
     /// LOADING NEXT SCENE FUNCTIONS
     /// ==================================================================
     public void PlayAsServer(){
-        Debug.LogError("PLAY AS SERVER !");
+        Debug.Log("PLAY AS SERVER !");
 
 		currentMenu = ConnexionState.Play;
 
@@ -353,7 +353,7 @@ public class NetworkConnexionProcess : MonoBehaviour
 
     public void PlayAsClient()
     {
-        Debug.LogError("PLAY AS CLIENT !");
+        Debug.Log("PLAY AS CLIENT !");
 
         currentMenu = ConnexionState.Play;
 

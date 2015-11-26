@@ -15,7 +15,6 @@ public class NetworkManager : MonoBehaviour
 	private const string typeName = "VRDragon";
 	private const string gameName = "RoomName";
 
-    private bool isRefreshingHostList = false;
     private bool isRefreshingHostListNeeded = false;
     private HostData[] hostList = null;
 	
@@ -121,12 +120,11 @@ public class NetworkManager : MonoBehaviour
                 // The MainMenu list of hosts need to be refreshed as well
                 mainMenuScript.setHostList(hostList);
             }
-            isRefreshingHostList = true;
             isRefreshingHostListNeeded = false;
             MasterServer.ClearHostList();
         }
 
-        if (!isRefreshingHostList && isRefreshingHostListNeeded)
+        if (isRefreshingHostListNeeded)
         {
             //isRefreshingHostList = true;
             // RequestHostList() empties the stored HostData array until the OnMasterServerMessage callback triggers with a HostListReceived event.
@@ -163,13 +161,13 @@ public class NetworkManager : MonoBehaviour
 	// Send a request to the master server to get the list of host contening all the data to join a server
     public void RefreshHostList()
     {
-        if (!isRefreshingHostList)
-        {
+        //if (!isRefreshingHostList)
+        //{
             isRefreshingHostListNeeded = true;
             //isRefreshingHostList = true;
             // RequestHostList() empties the stored HostData array until the OnMasterServerMessage callback triggers with a HostListReceived event.
             MasterServer.RequestHostList(typeName);
-        }
+        //}
     }
 
 
