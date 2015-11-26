@@ -16,6 +16,7 @@ public class NetworkManager : MonoBehaviour
 	private const string gameName = "RoomName";
 
     private bool isRefreshingHostList = false;
+    private bool isRefreshingHostListNeeded = false;
     private HostData[] hostList = null;
 	
 
@@ -120,34 +121,43 @@ public class NetworkManager : MonoBehaviour
                 // The MainMenu list of hosts need to be refreshed as well
                 mainMenuScript.setHostList(hostList);
             }
+            isRefreshingHostList = true;
+            isRefreshingHostListNeeded = false;
             MasterServer.ClearHostList();
         }
 
-        /*
-        // If the list of host has been refreshed 
-        if (isRefreshingHostList)
+        if (!isRefreshingHostList && isRefreshingHostListNeeded)
         {
-            isRefreshingHostList = false;
-            // If the list of host isn't empty, the host list is refresh
-            if (MasterServer.PollHostList().Length > 0)
-            {
-                hostList = MasterServer.PollHostList();
-                Debug.Log("RefreshServerList:" + hostList.Length);
-                foreach (HostData data in hostList)
-                {
-                    Debug.Log("HostData:" + data.ToString());
-                }
-            }
-            else
-            {
-                hostList = null;
-                Debug.Log("LIST VIDE :(");
-            }
-
-            // The MainMenu list of hosts need to be refreshed as well
-            mainMenuScript.setHostList(hostList);
+            //isRefreshingHostList = true;
+            // RequestHostList() empties the stored HostData array until the OnMasterServerMessage callback triggers with a HostListReceived event.
+            MasterServer.RequestHostList(typeName);
         }
-        */
+
+            /*
+            // If the list of host has been refreshed 
+            if (isRefreshingHostList)
+            {
+                isRefreshingHostList = false;
+                // If the list of host isn't empty, the host list is refresh
+                if (MasterServer.PollHostList().Length > 0)
+                {
+                    hostList = MasterServer.PollHostList();
+                    Debug.Log("RefreshServerList:" + hostList.Length);
+                    foreach (HostData data in hostList)
+                    {
+                        Debug.Log("HostData:" + data.ToString());
+                    }
+                }
+                else
+                {
+                    hostList = null;
+                    Debug.Log("LIST VIDE :(");
+                }
+
+                // The MainMenu list of hosts need to be refreshed as well
+                mainMenuScript.setHostList(hostList);
+            }
+            */
     }
 
 	// Send a request to the master server to get the list of host contening all the data to join a server
@@ -155,7 +165,8 @@ public class NetworkManager : MonoBehaviour
     {
         if (!isRefreshingHostList)
         {
-            isRefreshingHostList = true;
+            isRefreshingHostListNeeded = true;
+            //isRefreshingHostList = true;
             // RequestHostList() empties the stored HostData array until the OnMasterServerMessage callback triggers with a HostListReceived event.
             MasterServer.RequestHostList(typeName);
         }
