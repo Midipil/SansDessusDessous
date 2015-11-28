@@ -647,7 +647,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 187226}
-  m_Text: Victoire !
+  m_Text: You Win !
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -668,7 +668,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118074}
-  m_Text: "D\xE9faite..."
+  m_Text: Game Over
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1

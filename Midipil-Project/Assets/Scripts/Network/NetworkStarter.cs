@@ -28,12 +28,12 @@ public class NetworkStarter : MonoBehaviour {
 
             if (Network.isServer)
             {
-                Debug.LogError("LOAD PLAYER SCENE !");
+                Debug.Log("LOAD PLAYER SCENE !");
                 Network.Instantiate(playerViewPrefab, playerViewPrefab.transform.position, playerViewPrefab.transform.rotation, 0);
             }
             else
             {
-                Debug.LogError("LOAD ENNEMY SCENE !");
+                Debug.Log("LOAD ENNEMY SCENE !");
                 Network.Instantiate(ennemyViewPrefab, ennemyViewPrefab.transform.position, ennemyViewPrefab.transform.rotation, 0);
             }
         }

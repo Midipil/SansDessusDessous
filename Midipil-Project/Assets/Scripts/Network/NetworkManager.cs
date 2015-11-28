@@ -12,10 +12,10 @@ public class NetworkManager : MonoBehaviour
 	private string messageToMenu;
 
 	// Network variables
-	private const string typeName = "VRDragon";
-	private const string gameName = "RoomName";
+	private const string typeName = "LaCouveuseVR";
+	private const string gameName = "RunnerVSGuardian";
 
-    private bool isRefreshingHostList = false;
+    private bool isRefreshingHostListNeeded = false;
     private HostData[] hostList = null;
 	
 
@@ -44,16 +44,18 @@ public class NetworkManager : MonoBehaviour
 		// InitializeServer(MaxPlayerAmount, PortNumber, Use NAT punchthrough if no public IP present)
 		NetworkConnectionError error  = Network.InitializeServer(2, 25000, !Network.HavePublicAddress());
 		if (error != NetworkConnectionError.NoError)
-			//Debug.Log (error);
-						mainMenuScript.setMessage("A server has already been started. Try to join it !");
-		// Register the host to the Master : ServerRegisterHost(UniqueGameName, RoomName)
-        MasterServer.RegisterHost(typeName, gameName);
+            mainMenuScript.setMessage("The Runner has already been chosen.\n Try to play as the Guardian to join the game !");
+            //Debug.Log (error);
+            //mainMenuScript.setMessage("A server has already been started by another player.\n Try to play as the Guardian to join the game !");
+            // Register the host to the Master : ServerRegisterHost(UniqueGameName, RoomName)
+            MasterServer.RegisterHost(typeName, gameName);
     }
 	
 	public void CloseServer(){
 		Network.Disconnect();
 		MasterServer.UnregisterHost();
-	}
+        MasterServer.ClearHostList();
+    }
 
 	public void CloseServerInGame(){
 		// Kick the player off the server before closing it (see OnPlayerDisconnected() function)
@@ -71,12 +73,12 @@ public class NetworkManager : MonoBehaviour
 	public void QuitGame(){
 		// Properly close or quit the server
 		if (Network.isServer){
-			messageToMenu = "Server successfully closed";
+			messageToMenu = "The server has been successfully closed";
 			hasMessageToMenu = true;
 			CloseServerInGame();
 		}
 		else{
-			messageToMenu = "Disconnected from server";
+			messageToMenu = "You have been successfully disconnected from the server";
 			hasMessageToMenu = true;
 			QuitServer();
 		}
@@ -119,45 +121,54 @@ public class NetworkManager : MonoBehaviour
                 // The MainMenu list of hosts need to be refreshed as well
                 mainMenuScript.setHostList(hostList);
             }
+            isRefreshingHostListNeeded = false;
             MasterServer.ClearHostList();
         }
 
-        /*
-        // If the list of host has been refreshed 
-        if (isRefreshingHostList)
+        if (isRefreshingHostListNeeded)
         {
-            isRefreshingHostList = false;
-            // If the list of host isn't empty, the host list is refresh
-            if (MasterServer.PollHostList().Length > 0)
-            {
-                hostList = MasterServer.PollHostList();
-                Debug.Log("RefreshServerList:" + hostList.Length);
-                foreach (HostData data in hostList)
-                {
-                    Debug.Log("HostData:" + data.ToString());
-                }
-            }
-            else
-            {
-                hostList = null;
-                Debug.Log("LIST VIDE :(");
-            }
-
-            // The MainMenu list of hosts need to be refreshed as well
-            mainMenuScript.setHostList(hostList);
+            //isRefreshingHostList = true;
+            // RequestHostList() empties the stored HostData array until the OnMasterServerMessage callback triggers with a HostListReceived event.
+            MasterServer.RequestHostList(typeName);
         }
-        */
+
+            /*
+            // If the list of host has been refreshed 
+            if (isRefreshingHostList)
+            {
+                isRefreshingHostList = false;
+                // If the list of host isn't empty, the host list is refresh
+                if (MasterServer.PollHostList().Length > 0)
+                {
+                    hostList = MasterServer.PollHostList();
+                    Debug.Log("RefreshServerList:" + hostList.Length);
+                    foreach (HostData data in hostList)
+                    {
+                        Debug.Log("HostData:" + data.ToString());
+                    }
+                }
+                else
+                {
+                    hostList = null;
+                    Debug.Log("LIST VIDE :(");
+                }
+
+                // The MainMenu list of hosts need to be refreshed as well
+                mainMenuScript.setHostList(hostList);
+            }
+            */
     }
 
 	// Send a request to the master server to get the list of host contening all the data to join a server
     public void RefreshHostList()
     {
-        if (!isRefreshingHostList)
-        {
-            isRefreshingHostList = true;
+        //if (!isRefreshingHostList)
+        //{
+            isRefreshingHostListNeeded = true;
+            //isRefreshingHostList = true;
             // RequestHostList() empties the stored HostData array until the OnMasterServerMessage callback triggers with a HostListReceived event.
             MasterServer.RequestHostList(typeName);
-        }
+        //}
     }
 
 
@@ -203,7 +214,7 @@ public class NetworkManager : MonoBehaviour
 	void OnPlayerDisconnected(){
         Debug.Log("DISCONNECTED");
 		if(!hasMessageToMenu){
-			messageToMenu = "The client has quit";
+			messageToMenu = "The Guardian has quit the game"; // The client has quit
 			hasMessageToMenu = true;
 		}
 		CloseServer ();
@@ -217,7 +228,7 @@ public class NetworkManager : MonoBehaviour
 	void OnDisconnectedFromServer(){
 		if(Network.isClient){
 			if(!hasMessageToMenu){
-			   messageToMenu = "The server has been closed";
+			   messageToMenu = "The server has been closed.\nThe Runner has quit the game.";
 			   hasMessageToMenu = true;
 			}
 			// Don't destroy the game object on which the script is attached

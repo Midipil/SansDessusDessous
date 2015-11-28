@@ -252,9 +252,13 @@ public class NetworkConnexionProcess : MonoBehaviour
     // SERVER LIST ROOM =================================
     public void OnBack()
     {
+        if (currentMenu == ConnexionState.WaitingRoom)
+        {
+            Debug.Log("CLOSE SERVER");
+            networkManagerScript.CloseServer();
+        }
         currentMenu = ConnexionState.TwoPlayers;
         DisplayCurrentMenu();
-        networkManagerScript.CloseServer();
     }
 
     private void RequestRoomList()
@@ -337,7 +341,7 @@ public class NetworkConnexionProcess : MonoBehaviour
     /// LOADING NEXT SCENE FUNCTIONS
     /// ==================================================================
     public void PlayAsServer(){
-        Debug.LogError("PLAY AS SERVER !");
+        Debug.Log("PLAY AS SERVER !");
 
 		currentMenu = ConnexionState.Play;
 
@@ -349,7 +353,7 @@ public class NetworkConnexionProcess : MonoBehaviour
 
     public void PlayAsClient()
     {
-        Debug.LogError("PLAY AS CLIENT !");
+        Debug.Log("PLAY AS CLIENT !");
 
         currentMenu = ConnexionState.Play;
 

@@ -51,8 +51,11 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void restart(){
-		Application.LoadLevel("ConnexionFull");
-	}
+        GameObject networkManager = GameObject.FindGameObjectWithTag("NetworkManager");
+        NetworkManager networkManagerScript = networkManager.GetComponent<NetworkManager>();
+        networkManagerScript.QuitGame();
+        //Application.LoadLevel("ConnexionFull");
+    }
 
 	public bool IsPlayer(){
 		return Network.isServer;
