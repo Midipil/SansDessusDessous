@@ -34,7 +34,13 @@ public class OrbsCollision : MonoBehaviour {
 			// Play sound
 			this.transform.Find("Bearbot-vaisseau").GetComponent<AudioSource>().Play();
 			// Give boost
-			player.GetComponent<PlayerController>().Boost(); 
+			if(player.GetComponent<NetworkPlayerController>() != null){
+				player.GetComponent<NetworkPlayerController>().Boost();
+			} else if(player.GetComponent<PlayerController>() != null){
+				player.GetComponent<PlayerController>().Boost();
+			} else {
+				Debug.LogError("Can't find player controller component to apply boost");
+			}
 
 			if (orbsDestroyed >= orbsToDestroy){
 				// End of game
